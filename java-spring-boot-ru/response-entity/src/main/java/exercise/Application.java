@@ -46,7 +46,7 @@ public class Application {
         if (maybePost.isPresent()) {
             return ResponseEntity.of(maybePost);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
@@ -66,7 +66,7 @@ public class Application {
 
             return ResponseEntity.ok(data);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
     // END
