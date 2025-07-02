@@ -1,6 +1,5 @@
 package exercise;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.boot.SpringApplication;
