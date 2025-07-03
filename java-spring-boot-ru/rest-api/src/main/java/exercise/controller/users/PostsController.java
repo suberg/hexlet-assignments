@@ -17,16 +17,18 @@ import exercise.Data;
 @RestController
 @RequestMapping("/api")
 public class PostsController {
+    private static  List<Post> posts = Data.getPosts();
+
     @GetMapping("/users/{id}/posts")
     public List<Post> show(@PathVariable String id) {
-        return Data.getPosts().stream().filter(post -> post.getUserId() == Integer.parseInt(id)).toList();
+        return posts.stream().filter(post -> post.getUserId() == Integer.parseInt(id)).toList();
     }
 
     @PostMapping("/users/{id}/posts")
     @ResponseStatus(HttpStatus.CREATED)
     public Post create(@PathVariable String id, @RequestBody Post data) {
         data.setUserId(Integer.parseInt(id));
-        Data.getPosts().add(data);
+        posts.add(data);
 
         return data;
     }
