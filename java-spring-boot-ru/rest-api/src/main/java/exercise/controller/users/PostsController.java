@@ -25,9 +25,8 @@ public class PostsController {
     @PostMapping("/users/{id}/posts")
     @ResponseStatus(HttpStatus.CREATED)
     public Post create(@PathVariable String id, @RequestBody Post data) {
-        var posts = Data.getPosts().stream().filter(post -> post.getUserId() == Integer.parseInt(id)).toList();
         data.setUserId(Integer.parseInt(id));
-        posts.add(data);
+        Data.getPosts().add(data);
 
         return data;
     }
