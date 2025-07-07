@@ -43,8 +43,8 @@ public class PeopleController {
 
     @DeleteMapping(path = "/people/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable long id) {
-        personRepository.deleteById(id);
+    public void delete(@PathVariable String id) {
+        personRepository.deleteById(Long.valueOf(id));
     }
     // END
 }
