@@ -32,13 +32,13 @@ public class ProductsController {
     }
 
     // BEGIN
-    @PostMapping(path = "")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public Product create(@RequestBody Product product) {
-        Long id = product.getId();
+        List<Product> products = productRepository.findAll();
 
-        if (productRepository.existsById(id)) {
-            throw new ResourceAlreadyExistsException(String.format("Product with id=%d already exists", id));
+        if (products.stream().anyMatch(item -> item.equals(product))) {
+            throw new ResourceAlreadyExistsException("Product already exists");
         }
 
         productRepository.save(product);
